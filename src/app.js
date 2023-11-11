@@ -11,7 +11,7 @@ let days = [
   "Wednesday",
   "Thursday",
   "Friday",
-  "Saturday"
+  "Saturday",
 ];
 let day = days[now.getDay()];
 
@@ -26,7 +26,7 @@ h3.innerHTML = `${day}, ${hour}:${minute}`;
 
 //Add a search engine: a search bar with a button. When searching for a city (i.e. Paris),
 //display the city name on the page after the user submits the form.
-function changeCityName(event) {
+function displayWeather(event) {
   event.preventDefault();
   let searchInput = document.querySelector("#search-field");
   let query = searchInput.value;
@@ -37,16 +37,18 @@ function changeCityName(event) {
     let temperature = Math.round(response.data.temperature.current);
     let tempCelsius = document.querySelector("#temperature-display");
     tempCelsius.innerHTML = `${temperature}`;
+    console.log(response.data.condition.description);
+    let weatherDescription = document.querySelector("#weather-description");
+    weatherDescription.innerHTML = response.data.condition.description;
   }
 
   let apiKey = "35ee71bff3b1ft217b0aao934d002bd5";
   let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${query}&key=${apiKey}&units=metric`;
-
   axios.get(apiUrl).then(getTemperature);
 }
 let searchForm = document.querySelector("#search-form");
 let searchButton = document.querySelector("#search-button");
-searchButton.addEventListener("click", changeCityName);
+searchButton.addEventListener("click", displayWeather);
 
 //In your project, when a user searches for a city (example: Sydney), it should display the name of the city on the result page and the current temperature of the city.
 
