@@ -1,14 +1,14 @@
 body {
   margin-top: 30px;
   font-family: "Nunito", sans-serif;
-  background: linear-gradient(to left, #c4c4c4 0%, white 100%);
   /*   min-height: 100vh;
   overflow: hidden; */
+  background: #e6f9ff;
 }
 
 .container {
   max-width: 600px;
-  background: linear-gradient(310deg, rgb(85, 88, 218) 1.8%, #5fd1f9 100.5%);
+  background: #49badd;
   border-radius: 5px;
   padding: 40px;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
