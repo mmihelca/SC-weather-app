@@ -19,7 +19,7 @@ function displayWeather(response) {
   humidityELement.innerHTML = `Humidity: <strong>${humidity}%</strong>`;
 
   let windElement = document.querySelector(".wind");
-  let wind = response.data.wind.speed;
+  let wind = Math.round(response.data.wind.speed);
   windElement.innerHTML = `Wind: <strong>${wind}km/h</strong>`;
 
   let realFeel = document.querySelector(".feels-like");
