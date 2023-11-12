@@ -63,7 +63,8 @@ main {
   margin: 30px 0px;
   border-top: 1px solid rgba(128, 225, 255, 0.5);
   border-bottom: 1px solid rgba(128, 225, 255, 0.5);
-  margin: 30px 0px 30px 0px;
+  margin: 30px 0px 20px 0px;
+  padding-top: 10px;
 }
 
 .city-main {
@@ -125,6 +126,10 @@ p {
   font-weight: bold;
 }
 
+h2 {
+  margin: 20px 0px;
+}
+
 .forecast {
   display: flex;
   justify-content: space-between;
@@ -133,20 +138,28 @@ p {
 }
 
 .forecast-days {
-  background: #e6f9ff;
+  background: linear-gradient(135deg, #7fe1ff, #258fb0);
+  /*   background: #e6f9ff; */
   padding: 12px 23px;
   border-radius: 5px;
   text-align: center;
   margin-bottom: 30px;
   font-weight: 500;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px;
+  font-size: 13px;
 }
 
-.icon {
-  font-size: 45px;
+.forecast-icon {
+  width: 60px;
 }
 
 .max-min-temp {
   font-size: 12px;
+  opacity: 0.8;
+}
+
+.max-min-temp strong {
+  font-weight: 800;
   opacity: 0.8;
 }
 
