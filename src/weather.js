@@ -87,28 +87,56 @@ function formatDay(timestamp) {
     return days[date.getDay()];
   }
 }
+
 function displayForecast(response) {
   forecastElement.innerHTML = "";
 
-  response.data.list.forEach(function (day, index) {
-    let maxTemp = Math.round(day.main.temp_max);
-    let minTemp = Math.round(day.main.temp_min);
-    let smallIcon = day.weather[0].icon;
-    //the list array contains 40 items (3-hour forecast, so it has to be divided by 8 to get the five day forecast 😰)
-    if (index % 8 === 0) {
-      let dayName = formatDay(day.dt);
-      console.log(dayName);
-      forecastElement.innerHTML =
-        forecastElement.innerHTML +
-        `<div class="forecast-days">
+  //this is a pain in the ass
+  let temps = {};
+
+  response.data.list.forEach(function (item) {
+    let dt = item.dt_txt;
+    let date = new Date(dt);
+    let dateStr = date.toDateString();
+    let tempMin = item.main.temp_min;
+    let tempMax = item.main.temp_max;
+    // If the date is not in the object, add it with the initial values
+    if (!temps[dateStr]) {
+      temps[dateStr] = {
+        min: tempMin,
+        max: tempMax,
+        icon: item.weather[0].icon,
+      };
+    } else {
+      if (tempMin < temps[dateStr].min) {
+        temps[dateStr].min = tempMin;
+      }
+      if (tempMax > temps[dateStr].max) {
+        temps[dateStr].max = tempMax;
+      }
+    }
+  });
+
+  let counter = 0;
+
+  for (let dateStr in temps) {
+    if (counter === 5) {
+      break;
+    }
+    let dayName = formatDay(new Date(dateStr).getTime() / 1000);
+    let minTemp = Math.round(temps[dateStr].min);
+    let maxTemp = Math.round(temps[dateStr].max);
+    let smallIcon = temps[dateStr].icon;
+    forecastElement.innerHTML += `<div class="forecast-days">
          ${dayName} <br />
           <span> <img src="media/daily_forecast/${smallIcon}.svg" class="forecast-icon" /></span>
           <br />
           <span class="max-min-temp"><strong>${maxTemp}°C</strong> | ${minTemp}°C</span>
         </div>`;
-    }
-  });
+    counter++;
+  }
 }
+
 let forecastElement = document.querySelector(".forecast");
 
 let searchForm = document.querySelector(".search-form");
