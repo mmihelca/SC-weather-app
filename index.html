@@ -11,6 +11,7 @@
       href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;0,1000;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900;1,1000&display=swap"
       rel="stylesheet"
     />
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
   </head>
   <body>
     <div class="container">
@@ -31,17 +32,24 @@
         <button>City 1</button>
       </div>
       <main>
-        <span class="city-main">Gothenburg</span> <br />
+        <span class="city-main"></span><span class="country-main"> AU</span>
+        <br />
         <p>
           <span class="day-and-time">Saturday 21:51</span>,
-          <span class="weather-description">clear skies</span>
+          <span class="weather-description"></span>
         </p>
         <div class="weather-display">
-          <div class="left">🌥️</div>
+          <div class="left">
+            <img
+              src="https://openweathermap.org/img/wn/10d@2x.png"
+              class="main-icon"
+            />
+          </div>
           <div class="right">
-            <span class="humidity">Humidity: 90%</span> <br />
-            <span class="wind">Wind: 5 km/h</span> <br />
-            <span class="temperature-main">12°C</span>
+            <span class="humidity"></span><br />
+            <span class="wind"></span><br />
+            <span class="feels-like"></span><br />
+            <span class="temperature-main"></span>
           </div>
         </div>
       </main>
